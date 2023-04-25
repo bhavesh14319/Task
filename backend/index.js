@@ -4,8 +4,10 @@ const User = require("./model/UserModel");
 
 const app = express();
 const cors = require("cors")
+const dotenv= require("dotenv")
 
 app.use(cors())
+dotenv.config()
 
 const data =  require("./data");
 
@@ -15,7 +17,7 @@ const data =  require("./data");
 const mongoose = require('mongoose');
 
 const dbName = 'myDatabase';
-const dbURI = 'mongodb+srv://admin:admin@cluster0.egvkoxa.mongodb.net/?retryWrites=true&w=majority' + dbName;
+const dbURI = process.env.URL + dbName;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {console.log('MongoDB connected...')
